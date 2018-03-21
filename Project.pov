@@ -4,15 +4,24 @@
 #include "palm_2.inc"
 #include "mountain.inc"
 #include "glass.inc"
-camera {
-    // Penthouse view
-    // Comentar la vista de la camara de Mountain View y descomentar el objecto Penthouse al ultimo
-    location <0,15,50>
-    look_at <0,10,20>
+
+#declare mountain_view = camera {
     // Mountain View
     // TBD: La location correcta de la camara con el penthouse
     location <0, 15, -50>
     look_at <0, 5, 10>
+}
+
+
+#declare penthouse_view = camera {
+    // Penthouse view
+    // Comentar la vista de la camara de Mountain View y descomentar el objecto Penthouse al ultimo
+    location <0,15,50>
+    look_at <0,10,20>
+}
+
+camera {
+    mountain_view
 }
 
 light_source { <0,100,0> color White }
@@ -20,6 +29,18 @@ light_source { <0,100,0> color White }
 background {
   color rgb<114/255, 166/255, 249/255>
 }
+
+// sea ------------------------------
+plane {
+  <0,1,0>, 0
+  texture{ Polished_Chrome }
+  normal{ 
+    bumps 0.03
+    scale <1,0.25,0.25>*1
+    turbulence 0.6
+  }
+}
+//-----------------------------------
 
 union {
   box {
