@@ -5,8 +5,14 @@
 #include "mountain.inc"
 #include "glass.inc"
 camera {
-    location <0,15,-50>
-    look_at <0,5,0>
+    // Penthouse view
+    // Comentar la vista de la camara de Mountain View y descomentar el objecto Penthouse al ultimo
+    location <0,15,50>
+    look_at <0,10,20>
+    // Mountain View
+    // TBD: La location correcta de la camara con el penthouse
+    location <0, 15, -50>
+    look_at <0, 5, 10>
 }
 
 light_source { <0,100,0> color White }
@@ -291,7 +297,7 @@ union{
   box { 
     <-Hx,0,0>,< Hx*2,Hy,Hz>   
     pigment {
-      color White
+      color rgb <178/255, 207/255, 255/255>
     } 
     }
  // inside caved out
@@ -331,9 +337,10 @@ union{
   }
 }
 
+/*
 object {
   Penthouse
   scale 4
-  translate <-4, 1.2, 25>
-  rotate -90*y
-}
+  translate <-4, 1.2, 24>
+  rotate -180*y
+}*/
