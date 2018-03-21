@@ -31,8 +31,8 @@ background {
 }
 
 // sea ------------------------------
-plane {
-  <0,1,0>, 0
+box {
+  <-200,0,-20>, <200,0,300>
   texture{ Polished_Chrome }
   normal{ 
     bumps 0.03
@@ -368,8 +368,8 @@ object {
   scale 4
   translate <-4, 1.2, 24>
   rotate -180*y
-}*/
-
+}
+*/
 // Long chair ----------------------------------------------------
 // long chair single rectangle
 #declare rect = box {
