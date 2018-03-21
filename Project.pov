@@ -27,7 +27,7 @@
 }
 
 camera {
-    mountain_view_left
+    penthouse_view
 }
 
 light_source { <0,100,0> color White }
@@ -40,7 +40,7 @@ background {
 box {
   <-300,0,-20>, <300,0,400>
   texture{ Polished_Chrome }
-  normal{ 
+  normal{
     bumps 0.03
     scale <1,0.25,0.25>*1
     turbulence 0.6
@@ -52,7 +52,7 @@ union {
     <-5,0,-10>, <5,1,10>
     texture {
       Polished_Chrome
-      normal { 
+      normal {
         bumps 0.1
         scale <1,0.5,0.35>*0.8
         turbulence 0.2
@@ -71,7 +71,7 @@ union {
         phong_size 120
         reflection 0.6
       }
-      normal { 
+      normal {
         bumps 0.1
         scale <1,0.5,0.35>*0.8
         turbulence 0.2
@@ -105,19 +105,19 @@ union {
 }
 union{
   box {
-    <-45,0,30>,<-15,1.1,-45>
+    <-100,0,30>,<-15,1.1,-45>
     pigment {
       color rgb<247/255, 228/255, 160/255>
     }
   }
   box {
-    <45,0,30>,<15,1.1,-45>
+    <100,0,30>,<15,1.1,-45>
     pigment {
       color rgb<247/255, 228/255, 160/255>
     }
   }
   box {
-    <-45,0,40>,<45,1.1,25>
+    <-100,0,40>,<100,1.1,25>
     pigment {
       color rgb<247/255, 228/255, 160/255>
     }
@@ -459,41 +459,41 @@ object {
 #declare Hx = 2.00;
 #declare Hy = 3.50;
 #declare Hz = 4.00;
-#declare Wall_D = 0.20; 
+#declare Wall_D = 0.20;
 
- 
+
 #declare Window_Positon_1f = <-Hx*0.5,Wall_D/3>;
 #declare Window_Positon_2f = < Hx*1.5,Wall_D/3>;
 
-#declare Wall_Texture_1 = texture { 
-  pigment { 
+#declare Wall_Texture_1 = texture {
+  pigment {
     color White*1.1
   }
   normal {
-    bumps 0.5 
+    bumps 0.5
     scale 0.005
-  } 
-  finish { 
+  }
+  finish {
     phong 1
   }
-} 
-#declare Wall_Texture_2 = texture { 
-  pigment { 
+}
+#declare Wall_Texture_2 = texture {
+  pigment {
     color White*1.1
   }
-  finish { 
+  finish {
   phong 1
   }
-} 
+}
 
-#declare Window_Texture_1 = 
+#declare Window_Texture_1 =
 texture{pigment{ color White*1.3}
         finish { phong 0.1}}
-#declare Window_Texture_2 = 
+#declare Window_Texture_2 =
 texture{pigment{ color White*1.2}
         finish { phong 0.1}}
 
-#declare Window = 
+#declare Window =
 union{
  difference{
   box{<-0.50,0.80,-0.02>,< 0.50,1.80,0.02>}
@@ -502,7 +502,7 @@ union{
   box{<-0.45,1.33,-0.03>,<-0.03,1.75,0.03>}
   box{< 0.03,1.33,-0.03>,< 0.45,1.75,0.03>}
   texture{Window_Texture_1}
-  } // ---end of difference 
+  } // ---end of difference
  box{<-0.49,0.81,0.0>,< 0.49,1.79,0.001>
  texture{T_Glass3}}  // no interior!!!
  } // ---end of union
@@ -512,25 +512,25 @@ union{
 
 
 #declare House = difference{
-  box { 
-    <-Hx,0,0>,< Hx*2,Hy,Hz>   
+  box {
+    <-Hx,0,0>,< Hx*2,Hy,Hz>
     pigment {
       color rgb <178/255, 207/255, 255/255>
-    } 
+    }
     }
  // inside caved out
-  box { 
+  box {
     <-Hx+Wall_D,0.10,Wall_D>,
-        <Hx-Wall_D,Hy,Hz-Wall_D>  
+        <Hx-Wall_D,Hy,Hz-Wall_D>
         texture {
           Wall_Texture_2
-        }  
+        }
      }
 // subtract window holes
-  object { 
+  object {
     Window_Hole translate Window_Positon_2f
   }
-  object { 
+  object {
     Window_Hole translate Window_Positon_1f
   }
 }
