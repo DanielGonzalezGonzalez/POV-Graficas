@@ -155,6 +155,7 @@ sphere {
   }
 }
 
+// Short chair start --------------------------------------------------
 #declare sit = box {
   <-1,-0.05,-1>,<1,0.05,1>
   rotate x*17
@@ -232,6 +233,9 @@ object {
   rotate y*150
   translate <7,1.85,-16>
 }
+// Short chair end ---------------------------------------------------------
+
+
 #declare Hx = 2.00;
 #declare Hy = 3.50;
 #declare Hz = 4.00;
@@ -337,3 +341,89 @@ object {
   translate <-4, 1.2, 25>
   rotate -90*y
 }
+
+// Long chair ----------------------------------------------------
+// long chair single rectangle
+#declare rect = box {
+  <-0.8,-0.02,-0.1>,<0.8,0.02,0.1>
+}
+
+// long chair horizontal rectangles
+#declare j = 0.4;
+#declare horizontal = union {
+  #for (i, 1.0, 8.0)
+    object {
+      rect
+      translate <0, 0, i*j>
+    }
+  #end
+  translate z*-1.75
+}
+
+// long chair diagonal rectangles
+#declare diag = union {
+  #for (i, 1.0, 3.0)
+    object {
+      rect
+      translate <0, 0, 1.0+i*j>
+    }
+  #end
+  rotate x*-75
+  translate <0, -1.1, 1.2>
+}
+
+#declare long_chair = union {
+  object {
+    horizontal
+    texture {pigment {color Yellow}}
+  }
+  object {
+    diag
+    texture {pigment {color Yellow}}
+  }
+
+  // long chair horizontal tubes
+  cylinder {
+    <-0.8, 0, 1.6>,<-0.8, 0, -1.5>,0.07
+    texture {pigment {color White}}
+  }
+  cylinder {
+    <0.8, 0, 1.6>,<0.8, 0, -1.5>,0.07
+    texture {pigment {color White}}
+  }
+
+  // long chair legs
+  cylinder {
+    <-0.8, 0, 1.55>,<-0.8, -0.4, 1.55>,0.07
+    texture {pigment {color White}}
+  }
+  cylinder {
+    <-0.8, 0, -1.45>,<-0.8, -0.4, -1.45>,0.07
+    texture {pigment {color White}}
+  }
+  cylinder {
+    <0.8, 0, 1.55>,<0.8, -0.4, 1.55>,0.07
+    texture {pigment {color White}}
+  }
+  cylinder {
+    <0.8, 0, -1.45>,<0.8, -0.4, -1.45>,0.07
+    texture {pigment {color White}}
+  }
+
+  // long chair diagonal tubes
+  cylinder {
+    <0.8, 0, 1.55>,<0.8, 1.1, 1.85>,0.07
+    texture {pigment {color White}}
+  }
+  cylinder {
+    <-0.8, 0, 1.55>,<-0.8, 1.1, 1.85>,0.07
+    texture {pigment {color White}}
+  }
+}
+object{
+  long_chair
+  scale <1.5,1.5,1.5>
+  rotate y*-120
+  translate<-10. 1.85, -11>
+}
+// long chair end ------------------------------------------------
