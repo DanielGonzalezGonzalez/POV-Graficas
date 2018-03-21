@@ -153,3 +153,81 @@ sphere {
     }
   }
 }
+
+#declare sit = box {
+  <-1,-0.05,-1>,<1,0.05,1>
+  rotate x*17
+}
+
+#declare chair_leg_long = cylinder {
+  <0,0,0.5>, <0,0,-0.5>, 0.1
+}
+
+#declare chair_leg_short = cylinder {
+  <0,0,0.25>, <0,0,-0.25>, 0.1
+}
+
+#declare respaldo = box {
+  <-1,-0.06,-0.5>,<1,0.06,0.5>
+  rotate x*-60
+}
+
+
+#declare chair = union {
+  object {
+    sit
+    texture {pigment {color Blue}}
+  }
+  object {
+    respaldo
+    translate <0,0.9,1.42>
+    texture {pigment {color Blue}}
+  }
+  object {
+    chair_leg_long
+    rotate x*-60
+    translate <-0.9,-0.2,-1>
+    texture {pigment {color White}}
+  }
+  object {
+    chair_leg_long
+    rotate x*-60
+    translate <0.9,-0.2,-1>
+    texture {pigment {color White}}
+  }
+  object {
+    chair_leg_short
+    rotate x*70
+    translate <-0.9,-0.5,0.9>
+    texture {pigment {color White}}
+  }
+  object {
+    chair_leg_short
+    rotate x*70
+    translate <0.9,-0.5,0.9>
+    texture {pigment {color White}}
+  }
+  cylinder {
+    <0,0,0.45>, <0,0,-0.45>, 0.07
+    rotate x*-60
+    translate <-0.9, 0.15, 1>
+    texture {pigment {color White}}
+  }
+  cylinder {
+    <0,0,0.45>, <0,0,-0.45>, 0.07
+    rotate x*-60
+    translate <0.9, 0.15, 1>
+    texture {pigment {color White}}
+  }
+}
+
+object {
+  chair
+  rotate y*120
+  translate <10,1.85,-12>
+}
+object {
+  chair
+  rotate y*150
+  translate <7,1.85,-16>
+}
