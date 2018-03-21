@@ -3,6 +3,7 @@
 #include "palm.inc"
 #include "palm_2.inc"
 #include "mountain.inc"
+#include "glass.inc"
 camera {
     location <0,15,-50>
     look_at <0,5,0>
@@ -230,4 +231,109 @@ object {
   chair
   rotate y*150
   translate <7,1.85,-16>
+}
+#declare Hx = 2.00;
+#declare Hy = 3.50;
+#declare Hz = 4.00;
+#declare Wall_D = 0.20; 
+
+ 
+#declare Window_Positon_1f = <-Hx*0.5,Wall_D/3>;
+#declare Window_Positon_2f = < Hx*1.5,Wall_D/3>;
+
+#declare Wall_Texture_1 = texture { 
+  pigment { 
+    color White*1.1
+  }
+  normal {
+    bumps 0.5 
+    scale 0.005
+  } 
+  finish { 
+    phong 1
+  }
+} 
+#declare Wall_Texture_2 = texture { 
+  pigment { 
+    color White*1.1
+  }
+  finish { 
+  phong 1
+  }
+} 
+
+#declare Window_Texture_1 = 
+texture{pigment{ color White*1.3}
+        finish { phong 0.1}}
+#declare Window_Texture_2 = 
+texture{pigment{ color White*1.2}
+        finish { phong 0.1}}
+
+#declare Window = 
+union{
+ difference{
+  box{<-0.50,0.80,-0.02>,< 0.50,1.80,0.02>}
+  box{<-0.45,0.85,-0.03>,<-0.03,1.27,0.03>}
+  box{< 0.03,0.85,-0.03>,< 0.45,1.27,0.03>}
+  box{<-0.45,1.33,-0.03>,<-0.03,1.75,0.03>}
+  box{< 0.03,1.33,-0.03>,< 0.45,1.75,0.03>}
+  texture{Window_Texture_1}
+  } // ---end of difference 
+ box{<-0.49,0.81,0.0>,< 0.49,1.79,0.001>
+ texture{T_Glass3}}  // no interior!!!
+ } // ---end of union
+#declare Window_Hole =   //symmetric!!!
+  box{<-0.50,0.80,-0.50>,< 0.50,1.80,0.50>
+      texture{Window_Texture_2}}
+
+
+#declare House = difference{
+  box { 
+    <-Hx,0,0>,< Hx*2,Hy,Hz>   
+    pigment {
+      color White
+    } 
+    }
+ // inside caved out
+  box { 
+    <-Hx+Wall_D,0.10,Wall_D>,
+        <Hx-Wall_D,Hy,Hz-Wall_D>  
+        texture {
+          Wall_Texture_2
+        }  
+     }
+// subtract window holes
+  object { 
+    Window_Hole translate Window_Positon_2f
+  }
+  object { 
+    Window_Hole translate Window_Positon_1f
+  }
+}
+
+#declare Penthouse = union {
+  object {
+    House
+  }
+  object {
+    House translate <0, 3, 3>
+  }
+
+  object{ Window translate Window_Positon_2f}
+  object {Window translate Window_Positon_1f}
+
+  object {
+    Window translate <-1,3.1,3>
+  }
+
+  object {
+    Window translate <3, 3.1, 3>
+  }
+}
+
+object {
+  Penthouse
+  scale 4
+  translate <-4, 1.2, 25>
+  rotate -90*y
 }
