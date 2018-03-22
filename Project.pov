@@ -15,7 +15,7 @@
 #declare penthouse_view = camera {
     // Penthouse view
     // Comentar la vista de la camara de Mountain View y descomentar el objecto Penthouse al ultimo
-    location <0,15,50>
+    location <0,25,50>
     look_at <0,10,20>
 }
 
@@ -27,7 +27,7 @@
 }
 
 camera {
-    penthouse_view
+    mountain_view_right
 }
 
 light_source { <0,100,0> color White }
@@ -370,7 +370,7 @@ sphere {
   pigment {
     image_map{
       png "199"
-      map_type 1
+      map_type 2
     }
   }
 }

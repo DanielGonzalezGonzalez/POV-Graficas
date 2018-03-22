@@ -1,22 +1,15 @@
-# Python code for Julia Fractal
 from PIL import Image
 import random
-# driver function
+
 if __name__ == "__main__":
 
-    # setting the width, height and zoom
-    # of the image to be created
-    w, h, zoom = 1920,1080,1
+    w, h, zoom = 640,480,1
 
-    # creating the new image in RGB mode
     bitmap = Image.new("RGB", (w, h), "white")
 
-    # Allocating the storage for the image and
-    # loading the pixel data.
     pix = bitmap.load()
 
-    # setting up the variables according to
-    # the equation to  create the fractal
+
     cX, cY = -0.7, 0.27015
     moveX, moveY = 0.0, 0.0
     maxIter = 199
@@ -32,9 +25,6 @@ if __name__ == "__main__":
                 zy,zx = 2.0*zx*zy + cY, tmp
                 i -= 1
 
-            # convert byte to RGB (3 bytes), kinda
-            # magic to get nice colors
             pix[x,y] = (i << 21) + (i << 10) + i*8
 
-    # to display the created fractal
     bitmap.show()
