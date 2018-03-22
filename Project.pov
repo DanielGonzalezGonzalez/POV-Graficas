@@ -27,7 +27,7 @@
 }
 
 camera {
-    mountain_view_left
+    penthouse_view
 }
 
 light_source { <0,100,0> color White }
@@ -648,3 +648,54 @@ object{
   translate<-10. 1.85, -11>
 }
 // long chair end ------------------------------------------------
+
+// beach ball ---------------------------------------------------
+// http://objects.povworld.org/objects/cgi-bin/dl.cgi?sat1ball.zip
+#declare Ball = sphere { <0, 0, 0>, 1 }
+
+#declare Zyl = cylinder { <0, -1.2, 0>, <0, 1.2, 0>, .15 }
+
+#declare Sat1Ball = union {
+  difference {
+    object { Ball }
+    object { Zyl }
+    texture {  // untere Schicht: Farbenspektrum
+      pigment {
+        radial
+        phase .5  // Palette rotieren
+        color_map {
+          [0 color Blue]
+          [1/6 color Magenta]
+          [2/6 color Red]
+          [3/6 color Yellow]
+          [4/6 color Green]
+          [5/6 color Cyan]
+          [1 color Blue]
+        }
+      }
+      finish { phong .8 phong_size 30 }
+    }
+    texture {  // obere Schicht: Schwarze Streifen
+      pigment {
+        radial
+        frequency 12
+        color_map {
+          [0 0.5 color Black color Black]
+          [0.5 1 color Clear color Clear]
+        }
+      }
+    }
+  }
+  intersection {
+    object { Ball }
+    object { Zyl }
+    pigment { Black }
+  }
+}
+
+object { 
+  Sat1Ball 
+  rotate <65, 30, 0> 
+  translate <-2, 1.4, -4>
+}
+// end beach ball --------------------------------------------------------
