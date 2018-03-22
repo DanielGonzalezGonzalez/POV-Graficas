@@ -27,7 +27,7 @@
 }
 
 camera {
-    mountain_view_right
+    mountain_view_left
 }
 
 light_source { <0,100,0> color White }
@@ -39,7 +39,7 @@ background {
 // ocean
 box {
   <-300,0,-20>, <300,0,400>
-  texture{ Polished_Chrome }
+  texture{ Water }
   normal{
     bumps 0.03
     scale <1,0.25,0.25>*1
@@ -51,11 +51,11 @@ union {
   box {
     <-5,0,-10>, <5,1,10>
     texture {
-      Polished_Chrome
+      Water
       normal {
-        bumps 0.1
+        bumps 0.5
         scale <1,0.5,0.35>*0.8
-        turbulence 0.2
+        turbulence 0.8
       }
     }
     /*
@@ -648,3 +648,15 @@ object{
   translate<-10. 1.85, -11>
 }
 // long chair end ------------------------------------------------
+
+sky_sphere {
+  pigment {
+    bozo
+    color_map {
+      [0.0 color rgb<84/255, 149/255, 255/255>]
+      [0.2 color rgb<84/255, 149/255, 255/255>]
+      [1.0  color rgb<84/255, 149/255, 255/255>]
+    }
+    scale .006
+  }
+}
