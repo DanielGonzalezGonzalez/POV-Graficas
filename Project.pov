@@ -27,7 +27,7 @@
 }
 
 camera {
-    mountain_view_right
+  mountain_view_right
 }
 
 light_source { <0,100,0> color White }
@@ -39,7 +39,7 @@ background {
 // ocean
 box {
   <-300,0,-20>, <300,0,400>
-  texture{ Polished_Chrome }
+  texture{ Water }
   normal{
     bumps 0.03
     scale <1,0.25,0.25>*1
@@ -51,11 +51,11 @@ union {
   box {
     <-5,0,-10>, <5,1,10>
     texture {
-      Polished_Chrome
+      Water
       normal {
-        bumps 0.1
+        bumps 0.5
         scale <1,0.5,0.35>*0.8
-        turbulence 0.2
+        turbulence 0.8
       }
     }
     /*
@@ -648,3 +648,65 @@ object{
   translate<-10. 1.85, -11>
 }
 // long chair end ------------------------------------------------
+
+sky_sphere {
+  pigment {
+    bozo
+    color_map {
+      [0.0 color rgb<84/255, 149/255, 255/255>]
+      [0.2 color rgb<84/255, 149/255, 255/255>]
+      [1.0  color rgb<84/255, 149/255, 255/255>]
+    }
+    scale .006
+  }
+}
+// beach ball ---------------------------------------------------
+// http://objects.povworld.org/objects/cgi-bin/dl.cgi?sat1ball.zip
+#declare Ball = sphere { <0, 0, 0>, 1 }
+
+#declare Zyl = cylinder { <0, -1.2, 0>, <0, 1.2, 0>, .15 }
+
+#declare Sat1Ball = union {
+  difference {
+    object { Ball }
+    object { Zyl }
+    texture {  // untere Schicht: Farbenspektrum
+      pigment {
+        radial
+        phase .5  // Palette rotieren
+        color_map {
+          [0 color Blue]
+          [1/6 color Magenta]
+          [2/6 color Red]
+          [3/6 color Yellow]
+          [4/6 color Green]
+          [5/6 color Cyan]
+          [1 color Blue]
+        }
+      }
+      finish { phong .8 phong_size 30 }
+    }
+    texture {  // obere Schicht: Schwarze Streifen
+      pigment {
+        radial
+        frequency 12
+        color_map {
+          [0 0.5 color Black color Black]
+          [0.5 1 color Clear color Clear]
+        }
+      }
+    }
+  }
+  intersection {
+    object { Ball }
+    object { Zyl }
+    pigment { Black }
+  }
+}
+
+object { 
+  Sat1Ball 
+  rotate <65, 30, 0> 
+  translate <-2, 1.4, -4>
+}
+// end beach ball --------------------------------------------------------
