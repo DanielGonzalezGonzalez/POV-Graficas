@@ -27,7 +27,7 @@
 }
 
 camera {
-  mountain_view_right
+  penthouse_view
 }
 
 light_source { <0,100,0> color White }
