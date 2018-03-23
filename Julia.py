@@ -6,7 +6,7 @@ if __name__ == "__main__":
     '''
     Canvas size
     '''
-    w, h = 500,500
+    w, h = 4000,4000
 
     bitmap = Image.new("RGB", (w, h), "white")
     pix = bitmap.load()
@@ -23,8 +23,8 @@ if __name__ == "__main__":
             '''
             zx, zy = Scaled coordinates
             '''
-            zx = 1.5*(x - w/2)/(0.5*w)
-            zy = 1.0*(y - h/2)/(0.5*h)
+            zx = 2*(x - w/2)/(w/2)
+            zy = 2*(y - h/2)/(h/2)
             i = maxIter
             '''
             Break when iterations droped to 1 or the scaled coordinates
@@ -38,7 +38,7 @@ if __name__ == "__main__":
             '''
             Assign a color to the specific pixel.
             '''
-            pix[x,y] = (i << 21) + (i << 10) + i*8
+            pix[x,y] = (i % 8 * 32, i % 16 * 16, i % 32 * 8)
 
     '''
     Print the pixels.

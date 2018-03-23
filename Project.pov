@@ -366,12 +366,13 @@ object {
   }
 
 sphere {
-  <0, 40 ,160> 9
+  <-10, 50 ,240> 20
   pigment {
     image_map{
       png "199"
-      map_type 2
+      map_type 1
     }
+    rotate 35*y
   }
 }
 
@@ -704,9 +705,9 @@ sky_sphere {
   }
 }
 
-object { 
-  Sat1Ball 
-  rotate <65, 30, 0> 
+object {
+  Sat1Ball
+  rotate <65, 30, 0>
   translate <-2, 1.4, -4>
 }
 // end beach ball --------------------------------------------------------
