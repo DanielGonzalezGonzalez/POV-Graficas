@@ -546,6 +546,8 @@ texture{pigment{ color White*1.2}
   }
 }
 
+
+// Based on this idea www.f-lohmueller.de/pov_tut/x_sam/sam_110e.htm+&cd=1&hl=en&ct=clnk&gl=mx
 #declare Penthouse = union {
   object {
     House
